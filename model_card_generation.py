@@ -4,7 +4,6 @@ card_data = ModelCardData(
     language='en',
     license='MIT',
     tags=[
-        'transformer',
         'sequence-classification',
         'pairwise-classification',
         'evidence-detection',
@@ -22,13 +21,13 @@ card = ModelCard.from_template(
     model_description = '''This model is based upon a BERT model that was fine-tuned
       on 27K pairs of texts.''',
     developers = 'Nigel Jose and Amitrajit Pati',
-    base_model_repo = 'https://huggingface.co/google-bert/bert-base-uncased',
-    base_model_paper = 'https://aclanthology.org/N19-1423.pdf',
+    # base_model_repo = 'https://huggingface.co/google-bert/bert-base-uncased',
+    # base_model_paper = 'https://aclanthology.org/N19-1423.pdf',
     model_type = 'Supervised',
-    model_architecture = 'Transformers',
+    # model_architecture = 'Transformers',
     language = 'English',
-    base_model = 'bert-base-uncased',
-    training_data = '30K pairs of texts drawn from emails, news articles and blog posts.',
+    # base_model = 'bert-base-uncased',
+    # training_data = '30K pairs of texts drawn from emails, news articles and blog posts.',
 
     # TODO: fill in the following attributes with the appropriate values
     hyperparameters = '''
@@ -53,7 +52,6 @@ card = ModelCard.from_template(
       - Storage: at least 2GB,
       - GPU: V100''',
     software = '''
-      - Transformers 4.18.0
       - Pytorch 1.11.0+cu113''',
     bias_risks_limitations = '''Any inputs (concatenation of two sequences) longer than
       512 subwords will be truncated by the model.''',
@@ -63,5 +61,5 @@ card = ModelCard.from_template(
 
 # the following lines will write a markdown (.md) file; this becomes one of your model cards
 # change the filename accordingly
-with open('evidence-detection-transformer-model-card.md', 'w') as model_card:
+with open('evidence-detection-model-card.md', 'w') as model_card:
   model_card.write(card.content)
