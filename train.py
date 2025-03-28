@@ -41,13 +41,7 @@ class DNNTransformerModel(nn.Module):
             nn.Linear(self.transformer.config.hidden_size, 512),
             nn.SiLU(),
             nn.Dropout(0.1),
-            nn.Linear(512, 256),
-            nn.SiLU(),
-            nn.Dropout(0.1),
-            nn.Linear(256, 128),
-            nn.SiLU(),
-            nn.Dropout(0.1),
-            nn.Linear(128, num_labels)
+            nn.Linear(512, num_labels)
         )
 
     def forward(self, input_ids, attention_mask, token_type_ids):
