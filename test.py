@@ -42,10 +42,7 @@ class DNNTransformerModel(torch.nn.Module):
             torch.nn.Linear(512, 256),
             torch.nn.SiLU(),
             torch.nn.Dropout(0.1),
-            torch.nn.Linear(256, 128),
-            torch.nn.SiLU(),
-            torch.nn.Dropout(0.1),
-            torch.nn.Linear(128, num_labels)
+            torch.nn.Linear(256, num_labels)
         )
 
     def forward(self, input_ids, attention_mask, token_type_ids):

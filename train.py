@@ -10,7 +10,7 @@ from tqdm import tqdm
 
 # Configurations
 MODEL_NAME = 'bert-base-uncased'
-BATCH_SIZE = 16
+BATCH_SIZE = 32
 EPOCHS = 3
 LEARNING_RATE = 2e-5
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -39,9 +39,12 @@ class DNNTransformerModel(nn.Module):
         self.transformer = BertModel.from_pretrained(model_name)
         self.dnn = nn.Sequential(
             nn.Linear(self.transformer.config.hidden_size, 512),
-            nn.SiLU(),
+            nn.Relu(),
             nn.Dropout(0.1),
-            nn.Linear(512, num_labels)
+            nn.Linear(512, 256),
+            nn.Relu(),
+            nn.Dropout(0.1),
+            nn.Linear(256, num_labels)
         )
 
     def forward(self, input_ids, attention_mask, token_type_ids):
@@ -53,7 +56,8 @@ class DNNTransformerModel(nn.Module):
 
 # Load Data
 train_data = pd.read_csv('/kaggle/input/trained/train.csv') 
-val_data = pd.read_csv('/kaggle/input/trained/dev.csv')
+val_data = pd.read_csv('/kaggle/input/trained/dev.csv') 
+
 
 # Create datasets
 train_dataset = NLIDataset(train_data)
