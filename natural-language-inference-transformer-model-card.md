@@ -7,18 +7,18 @@ tags:
 - transformer
 - sequence-classification
 - pairwise-classification
-- evidence-detection
+- natural-language-inference
 - nlp
 repo: https://github.com/nigelmj/comp34812
 
 ---
 
-# Model Card for p64932nj-y24592ap-ED
+# Model Card for p64932nj-y24592ap-NLI
 
 <!-- Provide a quick summary of what the model is/does. -->
 
-This is a classification model that, given a claim and a piece of evidence,
-      was trained to detect whether the evidence is relevant to the claim.
+This is a classification model that, given a premise and a hypothesis,
+      was trained to determine whether the hypothesis is true based on the premise.
 
 
 ## Model Details

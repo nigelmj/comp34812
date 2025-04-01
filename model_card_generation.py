@@ -7,7 +7,7 @@ card_data = ModelCardData(
         'transformer',
         'sequence-classification',
         'pairwise-classification',
-        'evidence-detection',
+        'natural-language-inference',
         'nlp',
     ],
     repo="https://github.com/nigelmj/comp34812",
@@ -16,11 +16,11 @@ card_data = ModelCardData(
 card = ModelCard.from_template(
     card_data = card_data,
     template_path='COMP34812_modelcard_template.md',
-    model_id = 'p64932nj-y24592ap-ED',
-    model_summary = '''This is a classification model that, given a claim and a piece of evidence,
-      was trained to detect whether the evidence is relevant to the claim.''',
+    model_id = 'p64932nj-y24592ap-NLI',
+    model_summary = '''This is a classification model that, given a premise and a hypothesis,
+      was trained to determine whether the hypothesis is true based on the premise.''',
     model_description = '''This model is based upon a BERT model that was fine-tuned
-      on 27K pairs of texts.''',
+      on 30K pairs of texts.''',
     developers = 'Nigel Jose and Amitrajit Pati',
     base_model_repo = 'https://huggingface.co/google-bert/bert-base-uncased',
     base_model_paper = 'https://aclanthology.org/N19-1423.pdf',
@@ -28,9 +28,10 @@ card = ModelCard.from_template(
     model_architecture = 'Transformers',
     language = 'English',
     base_model = 'bert-base-uncased',
-    training_data = '30K pairs of texts drawn from emails, news articles and blog posts.',
 
     # TODO: fill in the following attributes with the appropriate values
+
+    training_data = '30K pairs of texts drawn from emails, news articles and blog posts.',
     hyperparameters = '''
       - learning_rate: 2e-05
       - train_batch_size: 16
@@ -63,5 +64,5 @@ card = ModelCard.from_template(
 
 # the following lines will write a markdown (.md) file; this becomes one of your model cards
 # change the filename accordingly
-with open('evidence-detection-transformer-model-card.md', 'w') as model_card:
+with open('natural-language-inference-transformer-model-card.md', 'w') as model_card:
   model_card.write(card.content)
