@@ -32,7 +32,7 @@ card = ModelCard.from_template(
 
     # TODO: fill in the following attributes with the appropriate values
 
-    training_data = '24K pairs of texts from train.csv and synthetic data created from the file',
+    training_data = '24K pairs of texts from external party and synthetic data created from the 24K pairs',
     hyperparameters = '''
       - learning_rate: 2e-05
       - train_batch_size: 16
