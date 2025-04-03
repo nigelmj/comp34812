@@ -28,10 +28,11 @@ card = ModelCard.from_template(
     model_architecture = 'Transformers',
     language = 'English',
     base_model = 'roberta-base',
+    finetuned_from_model = 'roberta-base'
 
     # TODO: fill in the following attributes with the appropriate values
 
-    training_data = '30K pairs of texts drawn from emails, news articles and blog posts.',
+    training_data = '24K pairs of texts from train.csv and synthetic data created from the file',
     hyperparameters = '''
       - learning_rate: 2e-05
       - train_batch_size: 16
@@ -57,10 +58,15 @@ card = ModelCard.from_template(
       - Storage: at least 1GB,
       - GPU: P100''',
     software = '''
-      - Transformers 4.18.0
-      - Pytorch 1.11.0+cu113''',
+      - Transformers 4.47.0
+      - Pytorch 2.5.1+cu121
+      -Cuda 12.1
+      -CuDNN 9''',
     bias_risks_limitations = '''Any inputs (concatenation of two sequences) longer than
-      256 subwords will be truncated by the model.''',
+      256 subwords will be truncated by the model.
+      The dataset was provided and not collected by the authors. No explicit data collection methodology is available. 
+      The random seed is set, but GPU-based training may lead to non-deterministic behavior despite the presence of an explicit seed setting.
+      The augmented data creation uses a simple algorithm and might cause the model to hallucinate''',
     additional_information = '''The hyperparameters were determined by experimentation
       with different values. And additional data addition technique was from the paper :Arxiv.org. (2015). Improving the Natural Language Inference robustness to hard dataset by data augmentation and preprocessing. [online] Available at: https://arxiv.org/html/2412.07108v1#S3.'''
 )
