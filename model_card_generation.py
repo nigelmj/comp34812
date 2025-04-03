@@ -28,7 +28,7 @@ card = ModelCard.from_template(
     model_architecture = 'Transformers',
     language = 'English',
     base_model = 'roberta-base',
-    finetuned_from_model = 'roberta-base'
+    finetuned_from_model = 'roberta-base',
 
     # TODO: fill in the following attributes with the appropriate values
 
@@ -45,7 +45,7 @@ card = ModelCard.from_template(
       - overall training time: 40 minutes
       - duration per training epoch: 15 minutes
       - model size: 500.78MB''',
-    testing_data = 'A testing file provided to us, called dev.csv'
+    testing_data = 'The model has been tested on validation data with 6K pairs.',
     testing_metrics = '''
       - Precision = 0.86162742994469
       - Recall = 0.86163895486936

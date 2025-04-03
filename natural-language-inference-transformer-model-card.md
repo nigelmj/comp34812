@@ -27,14 +27,14 @@ This is a classification model that, given a premise and a hypothesis,
 
 <!-- Provide a longer summary of what this model is. -->
 
-This model is based upon a BERT model that was fine-tuned
-      on 27K pairs of texts.
+This model is based upon a RoBerta model that was fine-tuned
+      on 30K pairs of texts + synthetically generated texts.
 
 - **Developed by:** Nigel Jose and Amitrajit Pati
 - **Language(s):** English
 - **Model type:** Supervised
 - **Model architecture:** Transformers
-- **Finetuned from model [optional]:** bert-base-uncased
+- **Finetuned from model [optional]:** roberta-base
 
 ### Model Resources
 
@@ -49,7 +49,7 @@ This model is based upon a BERT model that was fine-tuned
 
 <!-- This is a short stub of information on the training data that was used, and documentation related to data pre-processing or additional filtering (if applicable). -->
 
-30K pairs of texts drawn from emails, news articles and blog posts.
+24K pairs of texts from external party and synthetic data created from the 24K pairs
 
 ### Training Procedure
 
@@ -64,16 +64,18 @@ This model is based upon a BERT model that was fine-tuned
       - train_batch_size: 16
       - eval_batch_size: 16
       - seed: 42
-      - num_epochs: 10
+      - num_epochs: 1
+      - warmup_ratio: 0.1
+      - weight_decay: 0.01
 
 #### Speeds, Sizes, Times
 
 <!-- This section provides information about how roughly how long it takes to train the model and the size of the resulting model. -->
 
 
-      - overall training time: 5 hours
-      - duration per training epoch: 30 minutes
-      - model size: 300MB
+      - overall training time: 40 minutes
+      - duration per training epoch: 15 minutes
+      - model size: 500.78MB
 
 ## Evaluation
 
@@ -85,21 +87,22 @@ This model is based upon a BERT model that was fine-tuned
 
 <!-- This should describe any evaluation data used (e.g., the development/validation set provided). -->
 
-A subset of the development set provided, amounting to 2K pairs.
+The model has been tested on validation data with 6K pairs.
 
 #### Metrics
 
 <!-- These are the evaluation metrics being used. -->
 
 
-      - Precision
-      - Recall
-      - F1-score
-      - Accuracy
+      - Precision = 0.86162742994469
+      - Recall = 0.86163895486936
+      - F1-score = 0.86163045534955
+      - Accuracy = 0.86163895486936
+      
 
 ### Results
 
-The model obtained an F1-score of 67% and an accuracy of 70%.
+The model obtained an F1-score of 86% and an accuracy of 86%.
 
 ## Technical Specifications
 
@@ -107,25 +110,30 @@ The model obtained an F1-score of 67% and an accuracy of 70%.
 
 
       - RAM: at least 16 GB
-      - Storage: at least 2GB,
-      - GPU: V100
+      - Storage: at least 1GB,
+      - GPU: P100
 
 ### Software
 
 
-      - Transformers 4.18.0
-      - Pytorch 1.11.0+cu113
+      - Transformers 4.47.0
+      - Pytorch 2.5.1+cu121
+      -Cuda 12.1
+      -CuDNN 9
 
 ## Bias, Risks, and Limitations
 
 <!-- This section is meant to convey both technical and sociotechnical limitations. -->
 
 Any inputs (concatenation of two sequences) longer than
-      512 subwords will be truncated by the model.
+      256 subwords will be truncated by the model.
+      The dataset was provided and not collected by the authors. No explicit data collection methodology is available. 
+      The random seed is set, but GPU-based training may lead to non-deterministic behavior despite the presence of an explicit seed setting.
+      The augmented data creation uses a simple algorithm and might cause the model to hallucinate
 
 ## Additional Information
 
 <!-- Any other information that would be useful for other people to know. -->
 
 The hyperparameters were determined by experimentation
-      with different values.
+      with different values. And additional data addition technique was from the paper :Arxiv.org. (2015). Improving the Natural Language Inference robustness to hard dataset by data augmentation and preprocessing. [online] Available at: https://arxiv.org/html/2412.07108v1#S3.
