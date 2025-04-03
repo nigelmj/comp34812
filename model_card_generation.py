@@ -22,8 +22,8 @@ card = ModelCard.from_template(
     model_description = '''This model is based upon a RoBerta model that was fine-tuned
       on 30K pairs of texts + synthetically generated texts.''',
     developers = 'Nigel Jose and Amitrajit Pati',
-    base_model_repo = 'https://huggingface.co/google-bert/bert-base-uncased',
-    base_model_paper = 'https://aclanthology.org/N19-1423.pdf',
+    base_model_repo = 'https://huggingface.co/FacebookAI/roberta-base',
+    base_model_paper = 'https://arxiv.org/html/2412.07108v1#S3',
     model_type = 'Supervised',
     model_architecture = 'Transformers',
     language = 'English',
