@@ -7,7 +7,9 @@ card_data = ModelCardData(
         'sequence-classification',
         'pairwise-classification',
         'natural-language-inference',
-        'nlp',
+        'esim',
+        'ensemble',
+        'nlu',
     ],
     repo="https://github.com/nigelmj/comp34812",
     ignore_metadata_errors=True)
@@ -18,48 +20,60 @@ card = ModelCard.from_template(
     model_id = 'p64932nj-y24592ap-NLI',
     model_summary = '''This is a classification model that, given a premise and a hypothesis,
       was trained to determine whether the hypothesis is true based on the premise.''',
-    model_description = '''This model is based upon a BERT model that was fine-tuned
-      on 30K pairs of texts.''',
+    model_description = '''This model is based on ESIM-inspired attention and local inference modeling.
+      It was trained as an ensemble of LSTM, BiLSTM, GRU, and BiGRU architectures, with pretrained GloVe word embeddings.''',
     developers = 'Nigel Jose and Amitrajit Pati',
     model_type = 'Supervised',
     language = 'English',
 
-    # TODO: fill in the following attributes with the appropriate values
+    base_model_repo = 'N/A',
+    base_model_paper = '''
+    - [Ensemble Deep Learning on Time-Series Representation of Tweets for Rumor Detection in Social Media](https://arxiv.org/pdf/2004.12500)
+    - [Enhanced LSTM for Natural Language Inference](https://arxiv.org/pdf/1609.06038)
+    ''',
+    model_architecture = 'RNN Ensemble with Attention and Local Inference Modelling',
 
-
-    # base_model_repo = 'https://huggingface.co/google-bert/bert-base-uncased',
-    # base_model_paper = 'https://aclanthology.org/N19-1423.pdf',
-    # model_architecture = 'Transformers',
-    # base_model = 'bert-base-uncased',
-    # training_data = '30K pairs of texts drawn from emails, news articles and blog posts.',
-
-
-    training_data = '30K pairs of texts drawn from emails, news articles and blog posts.',
+    training_data = '24K pairs of texts provided by external party.',
     hyperparameters = '''
-      - learning_rate: 2e-05
-      - train_batch_size: 16
-      - eval_batch_size: 16
-      - seed: 42
-      - num_epochs: 10''',
+      - max_seq_len: 35
+      - vocabulary_size: 20000
+      - embedding_type: glove
+      - embedding_file: glove.6B.300d.txt
+      - embedding_dim: 300
+      - hidden_dim: 128
+      - learning_rate: 1e-04
+      - train_batch_size: 32
+      - eval_batch_size: 32
+      - seed: None (training on GPU may cause non-random results)
+      - num_epochs: 20''',
     speeds_sizes_times = '''
-      - overall training time: 5 hours
-      - duration per training epoch: 30 minutes
-      - model size: 300MB''',
-    testing_data = 'A subset of the development set provided, amounting to 2K pairs.',
+      - overall training time: 15 minutes
+      - duration per training epoch: 
+        * LSTM: 15s
+        * BiLSTM: 30s
+        * GRU: 15s
+        * BiGRU: 30s
+      - model size: 
+        * LSTM: 31MB
+        * BiLSTM: 44MB
+        * GRU: 30MB
+        * BiGRU: 40MB''',
+    testing_data = 'Model has been tested on the validation set (6K pairs). Further testing on an external test set is ongoing.',
     testing_metrics = '''
       - Precision
       - Recall
       - F1-score
       - Accuracy''',
-    results = 'The model obtained an F1-score of 67% and an accuracy of 70%.',
+    results = 'The model obtained an F1-score of 71% and an accuracy of 71% on the validation set.',
     hardware_requirements = '''
       - RAM: at least 16 GB
       - Storage: at least 2GB,
-      - GPU: V100''',
+      - GPU: P100''',
     software = '''
-      - Pytorch 1.11.0+cu113''',
-    bias_risks_limitations = '''Any inputs (concatenation of two sequences) longer than
-      512 subwords will be truncated by the model.''',
+      - TensorFlow 2.17.1 (CUDA 12.3, cuDNN 8)''',
+    bias_risks_limitations = '''The model was trained with a max sequence length of 35 tokens for premise and hypothesis, corresponding to the 95th percentile of the dataset.
+      The dataset was provided and not collected by the authors. No explicit data collection methodology is available.
+      The random seed was not set, as GPU-based training may lead to non-deterministic behavior despite the presence of an explicit seed setting.''',
     additional_information = '''The hyperparameters were determined by experimentation
       with different values.'''
 )
