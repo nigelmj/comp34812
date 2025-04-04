@@ -73,5 +73,5 @@ card = ModelCard.from_template(
 
 # the following lines will write a markdown (.md) file; this becomes one of your model cards
 # change the filename accordingly
-with open('natural-language-inference-transformer-model-card.md', 'w') as model_card:
+with open('nli-transformer-model-card.md', 'w') as model_card:
   model_card.write(card.content)
