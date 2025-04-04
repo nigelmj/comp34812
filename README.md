@@ -38,7 +38,7 @@ Link to trained models is [here.](https://drive.google.com/drive/folders/19Wyu8T
     ```
   - These are added to the training data to improve class balance
 
-Link to train model is [here.](https://drive.google.com/drive/folders/1iJV45NnKjS-Fgrub6SzAIQw8Y0_HVpHv?usp=share_link)
+Link to trained model is [here.](https://drive.google.com/drive/folders/1iJV45NnKjS-Fgrub6SzAIQw8Y0_HVpHv?usp=share_link)
 
 ---
 
