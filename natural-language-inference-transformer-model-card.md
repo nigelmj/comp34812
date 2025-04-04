@@ -28,7 +28,7 @@ This is a classification model that, given a premise and a hypothesis,
 <!-- Provide a longer summary of what this model is. -->
 
 This model is based upon a RoBerta model that was fine-tuned
-      on 30K pairs of texts + synthetically generated texts.
+      on 24K pairs of texts + synthetically generated texts.
 
 - **Developed by:** Nigel Jose and Amitrajit Pati
 - **Language(s):** English
@@ -40,8 +40,8 @@ This model is based upon a RoBerta model that was fine-tuned
 
 <!-- Provide links where applicable. -->
 
-- **Repository:** https://huggingface.co/google-bert/bert-base-uncased
-- **Paper or documentation:** https://aclanthology.org/N19-1423.pdf
+- **Repository:** https://huggingface.co/FacebookAI/roberta-base
+- **Paper or documentation:** https://arxiv.org/html/2412.07108v1#S3
 
 ## Training Details
 

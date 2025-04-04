@@ -20,7 +20,7 @@ card = ModelCard.from_template(
     model_summary = '''This is a classification model that, given a premise and a hypothesis,
       was trained to determine whether the hypothesis is true based on the premise.''',
     model_description = '''This model is based upon a RoBerta model that was fine-tuned
-      on 30K pairs of texts + synthetically generated texts.''',
+      on 24K pairs of texts + synthetically generated texts.''',
     developers = 'Nigel Jose and Amitrajit Pati',
     base_model_repo = 'https://huggingface.co/FacebookAI/roberta-base',
     base_model_paper = 'https://arxiv.org/html/2412.07108v1#S3',
