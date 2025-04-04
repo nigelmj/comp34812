@@ -13,8 +13,8 @@ Each approach is located in its own directory:
 ## Model Architectures
 
 ### Classical Model (Category B)
-- Uses an **ensemble architecture** combining predictions from multiple RNN variants (e.g., LSTM, GRU, BiGRU) [2]
-- The ensemble output is then passed through an **ESIM-inspired** architecture with [1]:
+- Uses an ensemble architecture combining predictions from multiple RNN variants (LSTM, BiLSTM, GRU, BiGRU) [2]
+- The ensemble output is then passed through an ESIM-inspired architecture with [1]:
   - Shared embedding layer initialised with pretrained embeddings (GloVe 6B, 300d)
   - Dual RNNs for context and inference composition
   - Soft attention and local inference via difference and element-wise product
@@ -23,7 +23,7 @@ Each approach is located in its own directory:
 
 ### Transformer Model (Category C)
 - Based on `roberta-base` as the pretrained transformer
-- The pooled output is passed through a **9-layer fully connected DNN**
+- The pooled output is passed through a 9-layer fully connected DNN
 - Initially, the model had difficulty predicting contradictions
   - To address this, synthetic contradictory and entailment samples were generated
   - Contradictions follow a templated pattern using extracted nouns and verbs [3]:
