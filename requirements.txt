@@ -5,3 +5,4 @@ pandas
 spacy
 huggingface-hub
 jinja2
+tqdm
