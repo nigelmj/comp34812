@@ -21,6 +21,8 @@ Each approach is located in its own directory:
   - Fully connected layers with dropout
 - Final output: 2-class softmax (Entailment / Not Entailment)
 
+Link to trained models is [here.](https://drive.google.com/drive/folders/19Wyu8TcIucB9VYpY0oqt6eyC2ArIwrxO?usp=share_link)
+
 ### Transformer Model (Category C)
 - Based on `roberta-base` as the pretrained transformer
 - The pooled output is passed through a 9-layer fully connected DNN
@@ -35,6 +37,8 @@ Each approach is located in its own directory:
     The {n1} {v} the {n2}  &  The {n1} {v} the {n2}
     ```
   - These are added to the training data to improve class balance
+
+Link to train model is [here.](https://drive.google.com/drive/folders/1iJV45NnKjS-Fgrub6SzAIQw8Y0_HVpHv?usp=share_link)
 
 ---
 
