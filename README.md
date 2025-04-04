@@ -13,13 +13,13 @@ Each approach is located in its own directory:
 ## Model Architectures
 
 ### Classical Model (Category B)
-- Uses an ensemble architecture combining predictions from multiple RNN variants (LSTM, BiLSTM, GRU, BiGRU) [2]
-- The ensemble output is then passed through an ESIM-inspired architecture with [1]:
-  - Shared embedding layer initialised with pretrained embeddings (GloVe 6B, 300d)
-  - Dual RNNs for context and inference composition
-  - Soft attention and local inference via difference and element-wise product
+- Uses an ensemble of four ESIM-inspired models [1], each built on a different RNN variant (LSTM, BiLSTM, GRU, BiGRU) [2]
+- Each model includes:
+  - Shared embedding layer initialized with pretrained GloVe embeddings (6B, 300d)
+  - Dual RNNs for context encoding and inference composition
+  - Soft attention and local inference using difference and element-wise product
   - Fully connected layers with dropout
-- Final output: 2-class softmax (Entailment / Not Entailment)
+- Final predictions from all models are combined using a weighted average to produce a 2-class softmax output (Entailment / Contradiction)
 
 Link to trained models is [here.](https://drive.google.com/drive/folders/19Wyu8TcIucB9VYpY0oqt6eyC2ArIwrxO?usp=share_link)
 
